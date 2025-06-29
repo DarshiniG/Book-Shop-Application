@@ -1,12 +1,7 @@
 rules:
   - id: insecure-sql-injection
     patterns:
-      - pattern-either:
-          - pattern: $USER_INPUT = $_GET['$PARAM'];
-          - pattern: $USER_INPUT = $_POST['$PARAM'];
-      - pattern: $sql = "...$USER_INPUT...";
-    message: "Potential SQL Injection: avoid concatenating user input directly into
-      SQL queries."
-    languages:
-      - php
+      - pattern: $SQL = "...$VAR...";
+    message: "Potential SQL Injection: avoid embedding user input directly in SQL queries. Use prepared statements."
+    languages: [php]
     severity: ERROR

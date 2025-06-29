@@ -1,10 +1,10 @@
 rules:
   - id: insecure-sql-injection
     patterns:
-      - pattern: |
-          $user_id = \$_GET['$PARAM'];
-      - pattern: |
-          \$sql = "SELECT * FROM orders WHERE user_id = \$user_id";
-    message: "Potential SQL Injection: user input from $_GET used directly in SQL query."
+      - pattern-either:
+          - pattern: $USER_INPUT = $_GET['$PARAM'];
+          - pattern: $USER_INPUT = $_POST['$PARAM'];
+      - pattern: $sql = "...$USER_INPUT...";
+    message: "Potential SQL Injection: avoid concatenating user input directly into SQL queries."
     languages: [php]
     severity: ERROR

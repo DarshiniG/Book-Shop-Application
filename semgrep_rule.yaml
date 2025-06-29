@@ -5,6 +5,8 @@ rules:
           - pattern: $USER_INPUT = $_GET['$PARAM'];
           - pattern: $USER_INPUT = $_POST['$PARAM'];
       - pattern: $sql = "...$USER_INPUT...";
-    message: "Potential SQL Injection: avoid concatenating user input directly into SQL queries."
-    languages: [php]
+    message: "Potential SQL Injection: avoid concatenating user input directly into
+      SQL queries."
+    languages:
+      - php
     severity: ERROR

@@ -2,25 +2,9 @@ rules:
   - id: insecure-sql-injection
     patterns:
       - pattern: |
-          $USER_INPUT = $_GET["..."];
+          $USER_INPUT = $_GET['user_id'];
       - pattern: |
-          $QUERY = "...$USER_INPUT...";
+          $sql = "... $USER_INPUT ...";
     message: "Potential SQL Injection: avoid using user input directly in SQL queries."
-    languages:
-      - php
+    languages: [php]
     severity: ERROR
-    metadata:
-      category: security
-      technology: php
-      vulnerability: SQL Injection
-      subcategory:
-        - vuln
-      cwe:
-        - "CWE-89: Improper Neutralization of Special Elements used in an SQL
-          Command ('SQL Injection')"
-      confidence: HIGH
-      likelihood: HIGH
-      impact: HIGH
-    
-       
-      vulnerability_class: sql-injection

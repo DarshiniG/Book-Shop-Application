@@ -21,3 +21,6 @@ rules:
       confidence: HIGH
       likelihood: HIGH
       impact: HIGH
+    
+       
+      vulnerability_class: sql-injection
